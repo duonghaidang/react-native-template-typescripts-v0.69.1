@@ -1,15 +1,12 @@
 import {heightScale, widthScale} from './scaling-utils';
 
 export const appFonts = {
-  BLACK: 'RobotoSlab-Black',
-  BOLD: 'RobotoSlab-Bold',
-  EXTRA_BOLD: 'RobotoSlab-ExtraBold',
-  EXTRA_LIGHT: 'RobotoSlab-ExtraLight',
-  LIGHT: 'RobotoSlab-Light',
-  MEDIUM: 'RobotoSlab-Medium',
-  REGULAR: 'RobotoSlab-Regular',
-  SEMI_BOLD: 'RobotoSlab-SemiBold',
-  THIN: 'RobotoSlab-Thin',
+  BLACK: 'Roboto-Black',
+  BOLD: 'Roboto-Bold',
+  LIGHT: 'Roboto-Light',
+  MEDIUM: 'Roboto-Medium',
+  REGULAR: 'Roboto-Regular',
+  THIN: 'Roboto-Thin',
 };
 
 const scale = Math.min(widthScale(), heightScale());
