@@ -7,8 +7,8 @@ import React, {
   useCallback,
   useImperativeHandle,
 } from 'react';
-import {AppTextInputRef} from './AppTextInput';
-import useCustomRef from '../hooks/useCustomRef';
+import {AppTextInputRef} from './app-text-input';
+import useCustomRef from '../hooks/use-custom-ref';
 
 export interface AppScrollViewRef {
   getValue: () => void;

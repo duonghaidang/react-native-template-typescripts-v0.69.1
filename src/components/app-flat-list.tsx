@@ -7,7 +7,7 @@ import React, {
   useCallback,
   useImperativeHandle,
 } from 'react';
-import useCustomRef from '../hooks/useCustomRef';
+import useCustomRef from '../hooks/use-custom-ref';
 
 type ItemT = /*unresolved*/ any;
 
