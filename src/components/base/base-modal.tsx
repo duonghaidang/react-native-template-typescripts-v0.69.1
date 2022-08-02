@@ -8,15 +8,15 @@ import React, {
 import {StyleSheet} from 'react-native';
 import Modal, {ModalProps} from 'react-native-modal';
 
-export interface MyModalRefObject {
+export interface BaseModalRefObject {
   show: (item?: any) => void;
   hide: () => void;
 }
 
-interface AppModalProps extends ModalProps {}
+interface BaseModalProps extends ModalProps {}
 
-const AppModal = forwardRef(
-  (props: AppModalProps, ref: Ref<MyModalRefObject>) => {
+const BaseModal = forwardRef(
+  (props: BaseModalProps, ref: Ref<BaseModalRefObject>) => {
     const [visible, setVisible] = useState(false);
     const show = useCallback(() => {
       setVisible(true);
@@ -43,7 +43,7 @@ const AppModal = forwardRef(
   },
 );
 
-export default AppModal;
+export default BaseModal;
 
 const styles = StyleSheet.create({
   container: {
