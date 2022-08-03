@@ -6,6 +6,7 @@ import {StatusBar} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {appColors} from './styles/colors';
 import RootStack from './navigators/root-stack';
+import BaseFakeModal from './components/base/base-fake-modal';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           translucent={true}
         />
         <RootStack />
+        <BaseFakeModal />
       </SafeAreaProvider>
     </NavigationContainer>
   );

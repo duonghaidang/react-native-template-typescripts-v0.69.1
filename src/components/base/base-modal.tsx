@@ -8,6 +8,7 @@ import React, {
 import {StyleSheet} from 'react-native';
 import Modal from 'react-native-modal';
 import {appColors} from '../../styles/colors';
+import {appStyles} from '../../utils/styles';
 
 export interface BaseModalRefObject {
   show: () => void;
@@ -62,7 +63,6 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 0,
     padding: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
+    ...appStyles.center,
   },
 });

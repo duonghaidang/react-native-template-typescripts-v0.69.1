@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import {
   Animated,
+  LayoutChangeEvent,
   StatusBar,
   StyleSheet,
   TouchableWithoutFeedback,
@@ -16,6 +17,7 @@ import {
   ViewProps,
 } from 'react-native';
 import {appColors} from '../../styles/colors';
+import {appStyles} from '../../utils/styles';
 
 export interface BaseFakeModalRefObject {
   show: (item?: any) => void;
@@ -28,31 +30,32 @@ const BaseFakeModal = forwardRef(
   (props: BaseFakeModalProps, ref: Ref<BaseFakeModalRefObject>) => {
     const [visible, setVisible] = useState(false);
 
-    const animated = useRef(new Animated.Value(0)).current;
+    const animated = useRef(new Animated.Value(0));
 
     const show = useCallback(() => {
       setVisible(true);
-      Animated.timing(animated, {
+      Animated.timing(animated.current, {
         toValue: 1,
         duration: 200,
         useNativeDriver: true,
       }).start();
-    }, [animated]);
+    }, []);
 
     const hide = useCallback(() => {
-      Animated.timing(animated, {
+      Animated.timing(animated.current, {
         toValue: 0,
         duration: 200,
         useNativeDriver: true,
       }).start(() => setVisible(false));
-    }, [animated]);
+    }, []);
 
     const backdropStyle = useMemo(
       () => [
         styles.container,
-        styles.backdrop,
+
         {
-          opacity: animated.interpolate({
+          backgroundColor: appColors.black,
+          opacity: animated.current.interpolate({
             inputRange: [0, 1],
             outputRange: [0, 0.7],
           }),
@@ -64,7 +67,7 @@ const BaseFakeModal = forwardRef(
       return {
         transform: [
           {
-            scale: animated,
+            scale: animated.current,
           },
         ],
       };
@@ -80,7 +83,11 @@ const BaseFakeModal = forwardRef(
     }
 
     return (
-      <View style={styles.container}>
+      <View
+        style={styles.container}
+        onLayout={(e: LayoutChangeEvent) => {
+          console.log('Đăng log ngay đây ~~> e', e);
+        }}>
         <StatusBar barStyle={'light-content'} />
         <TouchableWithoutFeedback onPress={hide}>
           <Animated.View style={backdropStyle} />
@@ -101,11 +108,7 @@ const styles = StyleSheet.create({
     height: '100%',
     margin: 0,
     padding: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
     position: 'absolute',
-  },
-  backdrop: {
-    backgroundColor: appColors.black,
+    ...appStyles.center,
   },
 });

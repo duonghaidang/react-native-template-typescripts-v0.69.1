@@ -9,6 +9,9 @@ import BaseModal, {BaseModalRefObject} from '../components/base/base-modal';
 import BaseFakeModal, {
   BaseFakeModalRefObject,
 } from '../components/base/base-fake-modal';
+import {Edge} from 'react-native-safe-area-context';
+
+const EDGES: Edge[] = ['top', 'right', 'left'];
 
 const Home = memo(() => {
   const refModal = useRef<BaseModalRefObject>(null);
@@ -24,7 +27,7 @@ const Home = memo(() => {
 
   return (
     <>
-      <AppScreenWrapper style={styles.container}>
+      <AppScreenWrapper style={styles.container} edges={EDGES}>
         <BasePressable onPress={openModal}>
           <BaseText>aaa</BaseText>
         </BasePressable>

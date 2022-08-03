@@ -5,10 +5,12 @@ import {
   NativeStackNavigationProp,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
-import Home from '../screens/home';
+import Splash from '../screens/splash';
+import BottomTab from './bottom-tab';
 
 type RootStackParamList = {
-  Home: undefined;
+  Splash: undefined;
+  BottomTab: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -29,7 +31,8 @@ const RootStack = memo(() => {
 
   return (
     <Stack.Navigator screenOptions={screenOptions}>
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Splash" component={Splash} />
+      <Stack.Screen name="BottomTab" component={BottomTab} />
     </Stack.Navigator>
   );
 });
