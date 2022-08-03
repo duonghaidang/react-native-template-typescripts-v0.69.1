@@ -1,9 +1,7 @@
 import {ScrollView, ScrollViewProps} from 'react-native';
-import React, {forwardRef, memo, Ref, RefObject} from 'react';
+import React, {forwardRef, memo, Ref} from 'react';
 
-interface BaseScrollViewProps extends ScrollViewProps {
-  refCore?: RefObject<ScrollView>;
-}
+interface BaseScrollViewProps extends ScrollViewProps {}
 
 const BaseScrollView = memo(
   forwardRef((props: BaseScrollViewProps, ref: Ref<ScrollView>) => {

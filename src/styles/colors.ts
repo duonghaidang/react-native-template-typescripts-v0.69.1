@@ -25,4 +25,5 @@ export const appColors = {
 
   // App Colors
   transparent: 'transparent',
+  black: '#000000',
 };

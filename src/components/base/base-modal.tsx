@@ -6,14 +6,17 @@ import React, {
   useState,
 } from 'react';
 import {StyleSheet} from 'react-native';
-import Modal, {ModalProps} from 'react-native-modal';
+import Modal from 'react-native-modal';
+import {appColors} from '../../styles/colors';
 
 export interface BaseModalRefObject {
-  show: (item?: any) => void;
+  show: () => void;
   hide: () => void;
 }
 
-interface BaseModalProps extends ModalProps {}
+interface BaseModalProps {
+  children: React.ReactNode;
+}
 
 const BaseModal = forwardRef(
   (props: BaseModalProps, ref: Ref<BaseModalRefObject>) => {
@@ -35,9 +38,18 @@ const BaseModal = forwardRef(
       <Modal
         style={styles.container}
         {...props}
+        statusBarTranslucent
         onBackdropPress={hide}
         onBackButtonPress={hide}
         isVisible={visible}
+        backdropColor={appColors.black}
+        backdropOpacity={0.7}
+        animationIn={'zoomIn'}
+        animationOut={'zoomOut'}
+        animationInTiming={200}
+        animationOutTiming={200}
+        backdropTransitionInTiming={0}
+        backdropTransitionOutTiming={0}
       />
     );
   },
