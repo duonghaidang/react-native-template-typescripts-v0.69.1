@@ -1,4 +1,3 @@
-import {StyleSheet} from 'react-native';
 import React, {memo, useMemo} from 'react';
 import Home from '../screens/home';
 import {

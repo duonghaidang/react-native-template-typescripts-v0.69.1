@@ -6,11 +6,26 @@ import {
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 import Splash from '../screens/splash';
-import BottomTab from './bottom-tab';
+import BottomTab, {BottomTabScreens} from './bottom-tab';
+import Modal from '../screens/modal';
+import {ColorValue} from 'react-native';
 
-type RootStackParamList = {
+export type RootStackParamList = {
   Splash: undefined;
-  BottomTab: undefined;
+  BottomTab:
+    | undefined
+    | {
+        screen: BottomTabScreens;
+      };
+
+  //
+  Modal:
+    | undefined
+    | {
+        children?: React.ReactNode;
+        backdropOpacity?: number;
+        backdropColor?: ColorValue;
+      };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -29,10 +44,23 @@ const RootStack = memo(() => {
     [],
   );
 
+  const screenModalOptions: NativeStackNavigationOptions = useMemo(
+    () => ({
+      presentation: 'transparentModal',
+      animation: 'none',
+    }),
+    [],
+  );
+
   return (
     <Stack.Navigator screenOptions={screenOptions}>
-      <Stack.Screen name="Splash" component={Splash} />
-      <Stack.Screen name="BottomTab" component={BottomTab} />
+      <Stack.Group>
+        <Stack.Screen name="Splash" component={Splash} />
+        <Stack.Screen name="BottomTab" component={BottomTab} />
+      </Stack.Group>
+      <Stack.Group screenOptions={screenModalOptions}>
+        <Stack.Screen name="Modal" component={Modal} />
+      </Stack.Group>
     </Stack.Navigator>
   );
 });

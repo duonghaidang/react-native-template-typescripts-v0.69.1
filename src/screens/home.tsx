@@ -1,50 +1,58 @@
 import {StyleSheet} from 'react-native';
-import React, {memo, useCallback, useRef} from 'react';
+import React, {memo, useCallback, useId, useMemo} from 'react';
 import AppScreenWrapper from '../components/app-screen-wrapper';
 import {appColors} from '../styles/colors';
 import {appText} from '../utils/typography';
 import BasePressable from '../components/base/base-pressable';
 import BaseText from '../components/base/base-text';
-import BaseModal, {BaseModalRefObject} from '../components/base/base-modal';
-import BaseFakeModal, {
-  BaseFakeModalRefObject,
-} from '../components/base/base-fake-modal';
+
 import {Edge} from 'react-native-safe-area-context';
+import {RootStackScreenProps} from '../navigators/root-stack';
+import {randomHexColor} from '../utils/color.hepler';
 
 const EDGES: Edge[] = ['top', 'right', 'left'];
 
-const Home = memo(() => {
-  const refModal = useRef<BaseModalRefObject>(null);
-  const refFakeModal = useRef<BaseFakeModalRefObject>(null);
+const Home = memo((props: RootStackScreenProps<'BottomTab'>) => {
+  const {navigation} = props;
+
+  const id = useId();
+
+  const ViewModal = useMemo(() => {
+    return (
+      <BasePressable
+        style={{backgroundColor: randomHexColor()}}
+        onPress={() => {
+          navigation.push('Modal', {
+            children: ViewModal,
+            backdropOpacity: 0,
+          });
+        }}>
+        <BaseText>haha-{id}</BaseText>
+      </BasePressable>
+    );
+  }, [id, navigation]);
 
   const openModal = useCallback(() => {
-    refModal?.current?.show();
-  }, []);
+    navigation.push('Modal', {
+      children: ViewModal,
+    });
+  }, [ViewModal, navigation]);
 
-  const openFakeModal = useCallback(() => {
-    refFakeModal?.current?.show();
-  }, []);
+  const goto = useCallback(() => {
+    navigation.navigate('BottomTab', {
+      screen: 'Video',
+    });
+  }, [navigation]);
 
   return (
-    <>
-      <AppScreenWrapper style={styles.container} edges={EDGES}>
-        <BasePressable onPress={openModal}>
-          <BaseText>aaa</BaseText>
-        </BasePressable>
-        <BasePressable onPress={openFakeModal}>
-          <BaseText>bbb</BaseText>
-        </BasePressable>
-      </AppScreenWrapper>
-      <BaseModal ref={refModal}>
-        <BaseText style={{backgroundColor: 'red'}}>bbb</BaseText>
-      </BaseModal>
-      <BaseFakeModal ref={refFakeModal}>
-        <BaseText style={{backgroundColor: 'red'}}>bbb</BaseText>
-        <BasePressable onPress={openModal}>
-          <BaseText>bbb</BaseText>
-        </BasePressable>
-      </BaseFakeModal>
-    </>
+    <AppScreenWrapper style={styles.container} edges={EDGES}>
+      <BasePressable onPress={openModal}>
+        <BaseText>aaa</BaseText>
+      </BasePressable>
+      <BasePressable onPress={goto}>
+        <BaseText>bbb</BaseText>
+      </BasePressable>
+    </AppScreenWrapper>
   );
 });
 

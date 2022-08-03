@@ -9,7 +9,6 @@ import React, {
 } from 'react';
 import {
   Animated,
-  LayoutChangeEvent,
   StatusBar,
   StyleSheet,
   TouchableWithoutFeedback,
@@ -83,11 +82,7 @@ const BaseFakeModal = forwardRef(
     }
 
     return (
-      <View
-        style={styles.container}
-        onLayout={(e: LayoutChangeEvent) => {
-          console.log('Đăng log ngay đây ~~> e', e);
-        }}>
+      <View style={styles.container}>
         <StatusBar barStyle={'light-content'} />
         <TouchableWithoutFeedback onPress={hide}>
           <Animated.View style={backdropStyle} />
