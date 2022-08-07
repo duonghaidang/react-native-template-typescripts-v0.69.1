@@ -1,14 +1,14 @@
 import {StyleSheet} from 'react-native';
 import React, {memo, useCallback, useId, useMemo} from 'react';
-import AppScreenWrapper from '../components/app-screen-wrapper';
-import {appColors} from '../styles/colors';
-import {appText} from '../utils/typography';
-import BasePressable from '../components/base/base-pressable';
-import BaseText from '../components/base/base-text';
 
 import {Edge} from 'react-native-safe-area-context';
-import {RootStackScreenProps} from '../navigators/root-stack';
-import {randomHexColor} from '../utils/color.hepler';
+import {RootStackScreenProps} from '~navigators/root-stack';
+import BasePressable from '~components/base/base-pressable';
+import {randomHexColor} from '~utils/color.hepler';
+import BaseText from '~components/base/base-text';
+import AppScreenWrapper from '~components/app-screen-wrapper';
+import {appColors} from '~styles/colors';
+import {appText} from '~utils/typography';
 
 const EDGES: Edge[] = ['top', 'right', 'left'];
 

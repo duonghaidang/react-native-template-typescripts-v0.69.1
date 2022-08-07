@@ -1,9 +1,10 @@
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React, {memo, useEffect} from 'react';
-import {appColors} from '../styles/colors';
-import AppScreenWrapper from '../components/app-screen-wrapper';
-import {RootStackScreenProps} from '../navigators/root-stack';
-import {appStyles} from '../utils/styles';
+import AppScreenWrapper from '~components/app-screen-wrapper';
+import BaseText from '~components/base/base-text';
+import {appColors} from '~styles/colors';
+import {RootStackScreenProps} from '~navigators/root-stack';
+import {appStyles} from '~utils/styles';
 
 const Splash = memo((props: RootStackScreenProps<'Splash'>) => {
   const {navigation} = props;
@@ -16,7 +17,7 @@ const Splash = memo((props: RootStackScreenProps<'Splash'>) => {
 
   return (
     <AppScreenWrapper style={styles.container}>
-      <Text>Splash</Text>
+      <BaseText>Splash</BaseText>
     </AppScreenWrapper>
   );
 });

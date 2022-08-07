@@ -5,6 +5,26 @@
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
     /* Completeness */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */,
+
+    "baseUrl": ".",
+    "paths": {
+      "~images/*": ["./src/assets/images/*"],
+      "~icons/*": ["./src/assets/icons/*"],
+      "~fonts/*": ["./src/assets/fonts/*"],
+      "~assets/*": ["./src/assets/*"],
+      "~components/*": ["./src/components/*"],
+      "~hooks/*": ["./src/hooks/*"],
+      "~navigators/*": ["./src/navigators/*"],
+      "~screens/*": ["./src/screens/*"],
+      "~services/*": ["./src/services/*"],
+      "~store/*": ["./src/stores/store/*"],
+      "~styles/*": ["./src/styles/*"],
+      "~theme/*": ["./src/theme/*"],
+      "~utils/*": ["./src/utils/*"],
+      "~reducers/*": ["./src/stores/reducers/*"],
+      "~actions/*": ["./src/stores/actions/*"],
+      "~/*": ["./src/*"]
+    },
   }
 }

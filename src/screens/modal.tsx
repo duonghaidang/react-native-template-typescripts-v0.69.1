@@ -5,9 +5,10 @@ import {
   View,
 } from 'react-native';
 import React, {memo, useCallback, useMemo} from 'react';
-import {appColors} from '../styles/colors';
-import {appStyles} from '../utils/styles';
-import {RootStackScreenProps} from '../navigators/root-stack';
+import {RootStackScreenProps} from '~navigators/root-stack';
+import {appColors} from '~styles/colors';
+import {appStyles} from '~utils/styles';
+import AppScreenWrapper from '~components/app-screen-wrapper';
 
 const Modal = memo((props: RootStackScreenProps<'Modal'>) => {
   const {navigation, route} = props;
@@ -30,13 +31,13 @@ const Modal = memo((props: RootStackScreenProps<'Modal'>) => {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
+    <AppScreenWrapper style={styles.container}>
       <StatusBar barStyle={'light-content'} />
       <TouchableWithoutFeedback onPress={onBackdropPress}>
         <View style={backdropStyle} />
       </TouchableWithoutFeedback>
       {route?.params?.children}
-    </View>
+    </AppScreenWrapper>
   );
 });
 
